@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "b584cdf9-6e0a-4323-909c-d6d2737d76af",
+		"name": "Certa Weather API Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32500544"
+	},
+	"item": [
+		{
+			"name": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Latitude is 51.51\", function () {\r",
+							"    pm.expect(pm.response.json().coord.lat).to.eql(51.51); // assert latitude\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Longitude is -0.13\", function () {\r",
+							"    pm.expect(pm.response.json().coord.lon).to.eql(-0.13); // assert longitude\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Temperature is present\", function () {\r",
+							"    pm.expect(pm.response.json().main.temp).to.exist; // verify if the temperature is present\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Valid weather description is present\", function () {\r",
+							"    pm.expect(pm.response.json().weather[0].description).to.be.a('string').and.to.not.be.empty; // verify the description\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Wind speed is a positive number\", function () {\r",
+							"    pm.expect(pm.response.json().wind.speed).to.be.greaterThan(0); // verify if the wind speed is a positive value\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
